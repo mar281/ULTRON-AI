@@ -1,4 +1,3 @@
-# Ad
 # ==================================
 # ULTRON AI - MAIN SYSTEM
 # Created by: Emmanuel Cornelius
@@ -7,7 +6,6 @@
 ULTRON_NAME = "ULTRON"
 CREATOR = "Emmanuel Cornelius"
 VERSION = "1.0"
-
 
 def startup():
     print("=" * 40)
@@ -18,7 +16,6 @@ def startup():
     print("Version:", VERSION)
     print("Hello, Creator. I am ULTRON.")
     print("Awaiting your instructions...")
-
 
 def respond(command):
     command = command.lower()
@@ -40,7 +37,6 @@ def respond(command):
 
     else:
         return "I am still learning, Creator."
-
 
 if __name__ == "__main__":
     startup()
