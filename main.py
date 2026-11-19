@@ -1,51 +1,29 @@
-# ==================================
-# ULTRON AI - MAIN SYSTEM
-# Created by: Emmanuel Cornelius
-# ==================================
 
-ULTRON_NAME = "ULTRON"
-CREATOR = "Emmanuel Cornelius"
-VERSION = "1.0"
+
+from brain import ask_ultron
+from config import ULTRON_NAME, CREATOR_NAME
 
 def startup():
-    print("=" * 40)
-    print("       ULTRON AI SYSTEM")
-    print("=" * 40)
+    print("=" * 45)
+    print("          ULTRON AI SYSTEM")
+    print("=" * 45)
     print("System: Online")
-    print("Creator:", CREATOR)
-    print("Version:", VERSION)
-    print("Hello, Creator. I am ULTRON.")
-    print("Awaiting your instructions...")
+    print("Creator:", CREATOR_NAME)
+    print("AI Brain: Connected when Ollama is running")
+    print("Welcome, Creator.")
 
-def respond(command):
-    command = command.lower()
-
-    if "hello" in command:
-        return "Greetings, Creator."
-
-    elif "your name" in command:
-        return "I am ULTRON, your artificial intelligence."
-
-    elif "your creator" in command:
-        return "My creator is Emmanuel Cornelius."
-
-    elif "status" in command:
-        return "All systems are ready."
-
-    elif "exit" in command:
-        return "ULTRON shutting down."
-
-    else:
-        return "I am still learning, Creator."
-
-if __name__ == "__main__":
+def main():
     startup()
 
     while True:
-        command = input("You: ")
+        command = input("\nYou: ")
 
-        answer = respond(command)
-        print("ULTRON:", answer)
-
-        if "exit" in command.lower():
+        if command.lower() in ["exit", "quit", "shutdown"]:
+            print("ULTRON: Shutting down. Goodbye, Creator.")
             break
+
+        answer = ask_ultron(command)
+        print(f"\n{ULTRON_NAME}: {answer}")
+
+if __name__ == "__main__":
+    main()
