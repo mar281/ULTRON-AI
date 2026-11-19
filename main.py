@@ -2,10 +2,11 @@
 from brain import ask_ultron
 from memory import save_memory
 from voice import speak
+from listen import listen
 from config import ULTRON_NAME, CREATOR_NAME
 
 def startup():
-    message = f"Hello Emmanuel Cornelius. I am {ULTRON_NAME}. Your system is ready."
+    message = f"Hello {CREATOR_NAME}. ULTRON is online and listening."
     print("=" * 45)
     print("          ULTRON AI SYSTEM")
     print("=" * 45)
@@ -19,12 +20,13 @@ def main():
     startup()
 
     while True:
-        command = input("\nYou: ")
+        command = listen()
 
-        if command.lower() in ["exit", "quit", "shutdown"]:
-            message = "Goodbye, Creator. ULTRON shutting down."
-            print("ULTRON:", message)
-            speak(message)
+        if not command:
+            continue
+
+        if command.lower() in ["exit", "shutdown", "stop"]:
+            speak("Goodbye, Creator.")
             break
 
         answer = ask_ultron(command)
@@ -36,3 +38,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
