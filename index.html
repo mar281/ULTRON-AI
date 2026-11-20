@@ -3,94 +3,351 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ULTRON AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ULTRON AI - RED EDITION</title>
+
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background: #080808;
-    color: #ff3030;
+    margin: 0;
+    background: #080000;
+    color: white;
     font-family: Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+}
+
+.logo {
+    color: #ff2020;
+    font-size: 35px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.clock {
+    color: white;
+}
+
+.subtitle {
     text-align: center;
+    color: #a66b6b;
+    margin: 0 0 20px;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
     padding: 20px;
 }
-h1 {
-    font-size: 48px;
-    letter-spacing: 8px;
-    text-shadow: 0 0 20px red;
-}
-.panel {
-    background: #151515;
-    border: 1px solid red;
-    border-radius: 12px;
+
+.core-panel, .status-panel, .chat-panel {
+    background: #190707;
+    border: 1px solid #ff2020;
     padding: 20px;
-    margin: 20px auto;
-    max-width: 650px;
+    border-radius: 5px;
 }
-#chat {
-    height: 250px;
+
+.core-panel {
+    text-align: center;
+}
+
+.core {
+    width: 190px;
+    height: 190px;
+    border: 3px solid #ff2020;
+    border-radius: 50%;
+    margin: 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 25px #ff2020;
+    animation: pulse 2s infinite;
+}
+
+.core span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+@keyframes pulse {
+    50% {
+        box-shadow: 0 0 45px #ff2020;
+    }
+}
+
+h2 {
+    color: #ff2020;
+    text-align: center;
+}
+
+.status-item {
+    padding: 12px;
+    border-bottom: 1px solid #390000;
+    text-align: center;
+}
+
+.online {
+    color: #ff2020;
+}
+
+.chat-panel {
+    margin: 0 20px 25px;
+}
+
+.chat-title {
+    text-align: center;
+    color: #ff2020;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.chat-display {
+    height: 280px;
     overflow-y: auto;
-    text-align: left;
-    padding: 10px;
+    background: #050000;
+    border: 1px solid #500000;
+    padding: 15px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.message {
+    margin-bottom: 12px;
+}
+
+.user {
+    color: #ff7777;
+}
+
+.ultron {
     color: white;
 }
+
+.input-area {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+}
+
 input {
-    padding: 13px;
-    width: 65%;
-    background: #222;
+    flex: 1;
+    min-width: 0;
+    padding: 14px;
+    background: #300000;
     color: white;
-    border: 1px solid red;
-    border-radius: 6px;
+    border: 1px solid #ff2020;
+    outline: none;
+    font-size: 15px;
 }
+
 button {
-    padding: 13px;
-    background: darkred;
+    padding: 12px 18px;
+    background: #ff2020;
     color: white;
     border: none;
-    border-radius: 6px;
+    font-weight: bold;
     cursor: pointer;
+}
+
+button:hover {
+    background: #990000;
+}
+
+footer {
+    text-align: center;
+    color: #a66b6b;
+    padding: 20px;
+    font-size: 12px;
+}
+
+@media (max-width: 700px) {
+    header {
+        padding: 15px;
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr;
+        padding: 12px;
+    }
+
+    .chat-panel {
+        margin: 0 12px 20px;
+    }
+
+    .input-area {
+        flex-wrap: wrap;
+    }
+
+    input {
+        flex-basis: 100%;
+    }
 }
 </style>
 </head>
+
 <body>
 
-<h1>ULTRON</h1>
-<p>ARTIFICIAL INTELLIGENCE SYSTEM</p>
+<header>
+    <div class="logo">ULTRON</div>
+    <div class="clock" id="clock"></div>
+</header>
 
-<div class="panel">
-<h2>SYSTEM STATUS</h2>
-<p style="color:#00ff88">● DASHBOARD ONLINE</p>
-<p>CREATOR: EMMANUEL CORNELIUS</p>
+<div class="subtitle">
+    ARTIFICIAL INTELLIGENCE COMMAND SYSTEM
 </div>
 
-<div class="panel">
-<h2>ULTRON AI CHAT</h2>
-<div id="chat">
-<p>ULTRON: Greetings, Creator. System ready.</p>
-</div>
+<section class="dashboard">
 
-<input id="message" placeholder="Talk to ULTRON...">
-<button onclick="sendMessage()">SEND</button>
-</div>
+    <div class="core-panel">
+        <h2>AI CORE</h2>
+        <div class="core">
+            <span>ULTRON</span>
+        </div>
+        <p class="online">SYSTEM ONLINE</p>
+    </div>
+
+    <div class="status-panel">
+        <h2>SYSTEM STATUS</h2>
+
+        <div class="status-item">
+            ULTRON: <span class="online">ONLINE</span>
+        </div>
+
+        <div class="status-item">
+            CREATOR: Emmanuel Cornelius
+        </div>
+
+        <div class="status-item">
+            AI ENGINE: OLLAMA / LLAMA 3
+        </div>
+
+        <div class="status-item">
+            VOICE: LOCAL VERSION
+        </div>
+
+        <div class="status-item">
+            MEMORY: LOCAL VERSION
+        </div>
+
+        <div class="status-item">
+            WEB DASHBOARD: <span class="online">ONLINE</span>
+        </div>
+    </div>
+
+</section>
+
+<section class="chat-panel">
+
+    <div class="chat-title">
+        ULTRON COMMUNICATION TERMINAL
+    </div>
+
+    <div class="chat-display" id="chat">
+        <div class="message ultron">
+            ULTRON: Welcome, Creator. Web dashboard is ready.
+        </div>
+    </div>
+
+    <div class="input-area">
+        <input
+            id="message"
+            type="text"
+            placeholder="Type a message to ULTRON..."
+            autocomplete="off"
+        >
+
+        <button onclick="sendMessage()">SEND</button>
+        <button onclick="startMic()">MIC</button>
+    </div>
+
+</section>
+
+<footer>
+    ULTRON AI | RED EDITION | CREATOR: EMMANUEL CORNELIUS
+</footer>
 
 <script>
+const chat = document.getElementById("chat");
+const input = document.getElementById("message");
+
+function updateClock() {
+    document.getElementById("clock").textContent =
+        new Date().toLocaleString();
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+function addMessage(sender, message, className) {
+    const div = document.createElement("div");
+    div.className = "message " + className;
+    div.textContent = sender + ": " + message;
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+}
+
 function sendMessage() {
-    const input = document.getElementById("message");
-    const chat = document.getElementById("chat");
     const message = input.value.trim();
 
     if (!message) return;
 
-    chat.innerHTML += "<p>You: " + escapeHTML(message) + "</p>";
-    chat.innerHTML += "<p>ULTRON: Dashboard communication test successful. My AI brain will be connected in a later step.</p>";
-
+    addMessage("CREATOR", message, "user");
     input.value = "";
-    chat.scrollTop = chat.scrollHeight;
+
+    addMessage(
+        "ULTRON",
+        "The web interface is working. The Python and Ollama AI connection has not been connected to this website yet.",
+        "ultron"
+    );
 }
 
-function escapeHTML(text) {
-    const element = document.createElement("div");
-    element.textContent = text;
-    return element.innerHTML;
+input.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+});
+
+function startMic() {
+    if (!("webkitSpeechRecognition" in window ||
+          "SpeechRecognition" in window)) {
+        addMessage(
+            "ULTRON",
+            "Voice input is not supported by this browser.",
+            "ultron"
+        );
+        return;
+    }
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+    const recognition = new SpeechRecognition();
+
+    recognition.onresult = function(event) {
+        input.value = event.results[0][0].transcript;
+        sendMessage();
+    };
+
+    recognition.onerror = function() {
+        addMessage(
+            "ULTRON",
+            "Microphone input could not be completed.",
+            "ultron"
+        );
+    };
+
+    recognition.start();
 }
 </script>
 
